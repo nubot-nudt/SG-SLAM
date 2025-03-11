@@ -35,10 +35,13 @@
     <param name="max_points_per_voxel" value="20"/>
     <param name="initial_threshold" value="2.0"/>
     <param name="min_motion_th" value="0.1" />
-    <!-- semgraph params -->
+
+    <!-- cluster params -->
     <param name="deltaA" value="2" />
     <param name="deltaR" value="0.5" />
     <param name="deltaP" value="2" />
+
+    <!-- building graph params -->
     <param name="edge_dis_th" value="60" />
     <param name="subgraph_edge_th" value="20" />
     <param name="subinterval" value="30" />
@@ -46,11 +49,13 @@
     <param name="nearest_neighbor_vehicle_disth" value="2.0" />
     <param name="nearest_neighbor_pole_disth" value="2.0" />
     <param name="max_local_graph_map_range" value="60.0" />
+
+    <!-- relozalization params -->
     <param name="model_deviation_trans" value="0.12" />
     <param name="model_deviation_rot" value="0.01" />
     <param name="inlier_rate_th" value="0.43" />
 
-    <!-- mapping -->
+    <!-- loop closing params -->
     <param name="global_des_dim" value="231" />
     <param name="loop_candidate" value="5" />
     <param name="keyframe_interval" value="5" />
