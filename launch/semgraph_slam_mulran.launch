@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- ROS paramaters -->
+  <arg name="bagfile" default=""/>
+  <arg name="visualize" default="true"/>
+  <arg name="odom_frame" default="odom"/>
+  <arg name="dataset" default="mulran"/>
+  <arg name="child_frame" default="base_link"/>
+
+  <!-- KISS-ICP paramaters -->
+  <arg name="deskew" default="true"/>
+  <arg name="relocalization_enable" default="false"/>
+  <arg name="loop_closure_enable" default="true"/>
+  <arg name="max_range" default="100.0" />
+  <arg name="min_range" default="5.0" />
+  <arg name="voxel_size" default="1.0" />
+
+  <!-- Odometry node -->
+  <node pkg="semgraph_slam" type="semSLAM" name="semSLAM" output="screen">
+    <param name="dataset" value="$(arg dataset)"/>
+    <!-- ROS params -->
+    <param name="odom_frame" value="$(arg odom_frame)"/>
+    <param name="child_frame" value="$(arg child_frame)"/>
+    <param name="result_path" value="$(find semgraph_slam)/save/mulran_odometry_0.txt"/>
+    <param name="pgo_result_path" value="$(find semgraph_slam)/save/mulran_slam_poses_0.txt"/>
+    <param name="lidar_path" value="/media/wangneng/6615-A70B/data/mulran_in_kitti/sequences/00/Ouster/"/>
+    <param name="label_path" value="/media/wangneng/6615-A70B/data/mulran_in_kitti/sequences/00/segnet4d/"/>
+    <!-- <param name="label_path" value="/home/wangneng/DataFast/SegNet4D_predictions/kitti/sequences/00/predictions/"/> -->
+
+    <!-- KISS-ICP params -->
+    <param name="max_range" value="$(arg max_range)"/>
+    <param name="min_range" value="$(arg min_range)"/>
+    <param name="deskew" value="$(arg deskew)"/> 
+    <param name="relocalization_enable" value="$(arg relocalization_enable)"/> 
+    <param name="voxel_size" value="$(arg voxel_size)"/>
+    <param name="max_points_per_voxel" value="20"/>
+    <param name="initial_threshold" value="2.0"/>
+    <param name="min_motion_th" value="0.1" />
+
+    <!-- semgraph params -->
+    <param name="deltaA" value="2" />
+    <param name="deltaR" value="0.5" />
+    <param name="deltaP" value="2" />
+    <param name="edge_dis_th" value="60" />
+    <param name="subgraph_edge_th" value="20" />
+    <param name="subinterval" value="30" />
+    <param name="graph_node_dimension" value="30" />
+    <param name="nearest_neighbor_vehicle_disth" value="2.0" />
+    <param name="nearest_neighbor_pole_disth" value="2.0" />
+    <param name="max_local_graph_map_range" value="60.0" />
+    <param name="model_deviation_trans" value="0.12" />
+    <param name="model_deviation_rot" value="0.01" />
+    <param name="inlier_rate_th" value="0.43" />
+
+    <!-- mapping -->
+    <param name="global_des_dim" value="231" />
+    <param name="loop_candidate" value="5" />
+    <param name="keyframe_interval" value="5" />
+    <param name="max_distance_for_loop" value="0.18" />
+    <param name="graph_sim_th" value="0.5" />
+    <param name="back_sim_th" value="0.3" />
+    <param name="map_voxel_size_loop" value="1.0" />
+    <param name="frame_acc_pgo" value="20" />
+    <param name="loop_closure_enable" value="$(arg loop_closure_enable)" />
+
+  </node>
+
+
+
+  <!-- Rosbag player, if bagfile argument was specified -->
+  <group if="$(eval bagfile != '')">
+    <node pkg="rosbag" type="play" name="player" args="$(arg bagfile)" output="screen"/>
+  </group>
+
+  <!-- Visualizer -->
+  <group if="$(arg visualize)">
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find semgraph_slam)/rviz/mapping.rviz"/>
+  </group>
+
+  
+</launch>
