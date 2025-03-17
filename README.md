@@ -4,7 +4,7 @@
 
 # Leveraging Semantic Graphs for Efficient and Robust LiDAR SLAM
 
-[![](https://img.shields.io/badge/Page-SG_SLAM-d6ccc2?style=flat-square&labelColor=495057&logoColor=white)](https://neng-wang.github.io/SG-SLAM/)  [![](https://img.shields.io/badge/Video-oneDrive-00b4d8?style=flat-square&labelColor=495057&logoColor=white)](https://1drv.ms/v/c/5f06ab4eccad8a4e/Ebg7WRKoQRpInlFeTXhpiaYBN-F-GsGmPVdMhvdXtT44mw?e=ZAH8HQ)
+[![](https://img.shields.io/badge/Page-SG_SLAM-d6ccc2?style=flat-square&labelColor=495057&logoColor=white)](https://neng-wang.github.io/SG-SLAM/)  [![](https://img.shields.io/badge/Video-oneDrive-00b4d8?style=flat-square&labelColor=495057&logoColor=white)](https://1drv.ms/v/c/5f06ab4eccad8a4e/Ebg7WRKoQRpInlFeTXhpiaYBN-F-GsGmPVdMhvdXtT44mw?e=ZAH8HQ)  [![](https://img.shields.io/badge/Paper-arXiv-d62828?style=flat-square&labelColor=495057&logoColor=white)](https://arxiv.org/abs/2503.11145)
 
 </div>
 
@@ -118,6 +118,19 @@ You can observe the relocalization results from rviz.
 
 - [SegNet4D](https://github.com/nubot-nudt/SegNet4D), a 4D semantic segmentation method.
 - [SGLC](https://github.com/nubot-nudt/SGLC), a semantic graph guided loop closing method.
+
+# Citation
+
+If you find our work helpful, please consider citing our paper:
+
+```bib
+ @article{wang2025sgslam,
+        title     = {{Leveraging Semantic Graphs for Efficient and Robust LiDAR SLAM}},
+        author    = {Neng, Wang and Huimin, Lu and Zhiqiang, Zheng and Hesheng, Wang and Yun-Hui, Liu and Xieyuanli, Chen},
+        journal   = {arXiv preprint arXiv:2503.11145},
+        year      = {2025}
+      }
+```
 
 # Acknowledgments
 
