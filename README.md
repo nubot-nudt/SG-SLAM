@@ -18,6 +18,7 @@ This repo contains the implementation of our paper
 
 ## News:
 
+- [2025-04] ROS2 supported.
 - [2025-03] Code released.
 - [2025-02] Submitted IROS 2025.
 
@@ -45,7 +46,7 @@ Our accompanying video is available on **[OneDrive](https://1drv.ms/v/c/5f06ab4e
 
 # 2. Prerequisites
 
-We tested our code on **ubuntu 20.04** and **ROS Noetic**
+We tested our code on **ubuntu 20.04** and **ROS1 noetic**, **ROS2 foxy**
 We have integrate the following dependency libraries into the [folder](./cpp/semgraph_slam/3rdparty)
 
 - [Ceres](https://github.com/ceres-solver/ceres-solver)
@@ -72,7 +73,9 @@ We use a subset of Apollo proposed by the [AutoMOS](https://github.com/PRBonn/au
 
 # 4. Usage
 
-### 4.1 Install
+### 4.1 Install & Running
+
+- **ROS1**
 
 ```bash
 mkdir -p catkin_ws/src
@@ -82,8 +85,6 @@ cd ..
 catkin build
 source ~/catkin_ws/devel/setup.bash
 ```
-
-### 4.2 running
 
 Run the following commands for SLAM
 
@@ -95,11 +96,28 @@ roslaunch semgraph_slam semgraph_slam_apollo.launch # for apollo
 
 Note that you should replace `lidar_path` and `label_path` with your own.
 
+- **ROS2**
+
+```bash
+mkdir -p ~/sg-slam/src && cd ~/sg-slam/src
+git clone git@github.com:nubot-nudt/SG-SLAM.git
+cd ..
+colcon build --symlink-install
+```
+
+Run the following commands for SLAM
+
+```bash
+ros2 launch semgraph_slam semgraph_slam.launch.py
+```
+
 **SLAM Performance Evaluation**
 
 ```bash
 cd eval
-python traj_eval.py --gt_file ./ground_truth_pose/00.txt --pred_file ../save/kitti_slam_00.txt --calib_file /path/to/calib/00/calib.txt
+python traj_eval.py --gt_file /path/to/kitti/00/00.txt --pred_file ../save/kitti_slam_00.txt --calib_file /path/to/kitti/00/calib.txt  # ros1
+
+python traj_eval.py --gt_file /path/to/kitti/00/00.txt --pred_file ./install/semgraph_slam/share/semgraph_slam/save/kitti_odometry_00.txt --calib_file /path/to/kitti/00/calib.txt  #ros2
 ```
 
 ### 4.3 Relocalization Demo

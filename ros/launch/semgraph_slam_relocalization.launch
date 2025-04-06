@@ -4,14 +4,15 @@
   <arg name="bagfile" default=""/>
   <arg name="visualize" default="true"/>
   <arg name="odom_frame" default="odom"/>
+  <arg name="map_frame" default="map"/>
   <arg name="dataset" default="kitti"/>
   <arg name="child_frame" default="base_link"/>
 
   <!-- KISS-ICP paramaters -->
   <arg name="deskew" default="false"/>
-  <arg name="relocalization_enable" default="false"/>
-  <arg name="loop_closure_enable" default="true"/>
-  <arg name="max_range" default="100.0" />
+  <arg name="relocalization_enable" default="true"/>
+  <arg name="loop_closure_enable" default="false"/>
+  <arg name="max_range" default="80.0" />
   <arg name="min_range" default="5.0" />
   <arg name="voxel_size" default="1.0" />
 
@@ -25,17 +26,16 @@
     <param name="pgo_result_path" value="$(find semgraph_slam)/save/kitti_slam_00.txt"/>
     <param name="graph_map_path" value="$(find semgraph_slam)/save/graph_map_00.txt"/>
     <param name="graph_edge_path" value="$(find semgraph_slam)/save/graph_edge_00.txt"/>
-    <param name="lidar_path" value="/home/wangneng/DataFast/kitti/sequences/00/velodyne/"/>
-    <param name="label_path" value="/home/wangneng/DataFast/kitti/sequences/00/labels/"/>
-    <!-- <param name="label_path" value="/home/wangneng/DataFast/SegNet4D_predictions/kitti/sequences/00/predictions/"/> -->
-    
+    <param name="lidar_path" value="/home/wangneng/DataFast/kitti/sequences/00_relocalization/velodyne/"/>
+    <param name="label_path" value="/home/wangneng/DataFast/kitti/sequences/00_relocalization/labels/"/>
+
     <!-- KISS-ICP params -->
     <param name="max_range" value="$(arg max_range)"/>
     <param name="min_range" value="$(arg min_range)"/>
     <param name="deskew" value="$(arg deskew)"/> 
     <param name="relocalization_enable" value="$(arg relocalization_enable)"/> 
-    <param name="voxel_size" value="$(arg voxel_size)"/>  
-    <param name="max_points_per_voxel" value="20"/> 
+    <param name="voxel_size" value="$(arg voxel_size)"/>
+    <param name="max_points_per_voxel" value="20"/>
     <param name="initial_threshold" value="2.0"/>
     <param name="min_motion_th" value="0.1" />
 
@@ -51,26 +51,27 @@
     <param name="graph_node_dimension" value="30" />
     <param name="nearest_neighbor_vehicle_disth" value="2.0" />
     <param name="nearest_neighbor_pole_disth" value="2.0" />
-    <param name="max_local_graph_map_range" value="100.0" />
+    <param name="max_local_graph_map_range" value="80.0" />
 
-    <!-- relozalization params -->
+    <!-- relocalization params -->
     <param name="model_deviation_trans" value="0.12" />
     <param name="model_deviation_rot" value="0.01" />
-    <param name="inlier_rate_th" value="0.43" />  <!-- 0.43 -->
+    <param name="inlier_rate_th" value="0.37" />  <!-- 0.43 -->
 
-    <!-- loop closing params-->
+    <!-- loop closing params -->
     <param name="global_des_dim" value="231" />
     <param name="loop_candidate" value="5" />
     <param name="keyframe_interval" value="5" />
-    <param name="max_distance_for_loop" value="0.1" /> 
+    <param name="max_distance_for_loop" value="0.1" />  
     <param name="graph_sim_th" value="0.5" />
     <param name="back_sim_th" value="0.58" />
-
     <param name="map_voxel_size_loop" value="1.0" />
     <param name="frame_acc_pgo" value="20" />
     <param name="loop_closure_enable" value="$(arg loop_closure_enable)" />
 
   </node>
+
+
 
   <!-- Rosbag player, if bagfile argument was specified -->
   <group if="$(eval bagfile != '')">
@@ -79,7 +80,7 @@
 
   <!-- Visualizer -->
   <group if="$(arg visualize)">
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find semgraph_slam)/rviz/mapping.rviz"/>
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find semgraph_slam)/rviz/relocalization.rviz"/>
   </group>
 
   

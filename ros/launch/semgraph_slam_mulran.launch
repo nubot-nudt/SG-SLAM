@@ -4,6 +4,7 @@
   <arg name="bagfile" default=""/>
   <arg name="visualize" default="true"/>
   <arg name="odom_frame" default="odom"/>
+  <arg name="map_frame" default="map"/>
   <arg name="dataset" default="mulran"/>
   <arg name="child_frame" default="base_link"/>
 
