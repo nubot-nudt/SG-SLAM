@@ -53,7 +53,7 @@ if("$ENV{ROS_VERSION}" STREQUAL "1")
   catkin_package()
 
   find_package(PCL REQUIRED)
-
+  find_package(GTSAM REQUIRED)
   include_directories(
     include
     ${catkin_INCLUDE_DIRS} 
