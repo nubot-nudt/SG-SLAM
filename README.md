@@ -160,7 +160,7 @@ We would like to express our sincere gratitude for the following open-source wor
 
 # Contact us
 
-Feel free to open an issue for any question or  feature extension requests. We look forward to developing with you!
+Feel free to open an issue for any question or  function extension requests. We look forward to developing with you!
 
 
 # **License**
