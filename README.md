@@ -158,6 +158,11 @@ We would like to express our sincere gratitude for the following open-source wor
 
 - [CVC-Cluster](https://github.com/wangx1996/Lidar-Segementation): Curved-Voxel Clustering for Accurate Segmentation of 3D LiDAR Point Clouds with Real-Time Performance.
 
+# Contact us
+
+Feel free to open an issue for any question or  feature extension requests. We look forward to developing with you!
+
+
 # **License**
 
 This project is free software made available under the MIT License. For details see the LICENSE file.

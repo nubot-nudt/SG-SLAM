@@ -19,7 +19,7 @@
 #include <tsl/robin_map.h>
 #include <sophus/se3.hpp>
 #include <sophus/so3.hpp>
-#include "Coreutils.h"
+#include "semgraph_slam/core/Coreutils.h"
 
 namespace Eigen {
     using Matrix6d = Eigen::Matrix<double, 6, 6>;

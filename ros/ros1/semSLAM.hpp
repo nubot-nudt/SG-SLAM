@@ -92,6 +92,7 @@ class Mapping{
         ~Mapping(){};
         void ScanMapping();
         void PublishMap(bool seq_finsih_flag);
+        void GlobalMap();
         
 
     private:

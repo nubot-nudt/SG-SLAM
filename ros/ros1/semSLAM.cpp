@@ -194,7 +194,7 @@ void Odometry::RegisterFrame() {
         auto end_time = std::chrono::steady_clock::now(); 
         auto duration = std::chrono::duration<double, std::milli>(end_time - start_time).count(); 
         total_time = total_time + duration;
-        std::cout<<CYAN<<"[ Odometry ]: time:"<<duration<<",average time:"<<total_time/frame_count<<",frame count:"<<frame_count<<std::endl;
+        std::cout<<GREEN<<"[ Odometry ]: time:"<<duration<<",average time:"<<total_time/frame_count<<",frame count:"<<frame_count<<std::endl;
         
         // Publish Broadcast the tf
         std_msgs::Header velodyne_header;
@@ -645,6 +645,10 @@ void Mapping::PublishMap(bool seq_finsih_flag){
             fout_global_graph_edge_<<semGraphMappinger.global_graph_edge[i].first<<" "<<semGraphMappinger.global_graph_edge[i].second<<std::endl;
         }
     }
+    
+}
+
+void Mapping::GlobalMap(){
     
 }
 

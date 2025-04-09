@@ -13,12 +13,14 @@
 #include <random>
 #include <tsl/robin_map.h>
 
-#include "Coreutils.h"
+#include "semgraph_slam/core/Coreutils.h"
 #include "Hungarian.hpp"
 #include "FastIcp.hpp"
 #include "PlaneIcp.hpp"
-#include "nanoflann.hpp"
-#include "KDTreeVectorOfVectorsAdaptor.h"
+
+#include "semgraph_slam/core/nanoflann.hpp"
+#include "semgraph_slam/core/KDTreeVectorOfVectorsAdaptor.h"
+#include "semgraph_slam/core/CommonUtils.hpp"
 
 #define CV_PI   3.1415926535897932384626433832795
 
@@ -31,14 +33,7 @@ namespace graph_slam{
 //                 return ((1 << 20) - 1) & (vec[0] * 73856093 ^ vec[1] * 19349663 ^ vec[2] * 83492791);
 //                 }
 // }; 
-using NodeDesTree = KDTreeVectorOfVectorsAdaptor< std::vector<std::vector<float>>, float >;
 
-struct VoxelBlock {
-        std::vector<Eigen::Vector3d> points;
-        inline void AddPoint(const Eigen::Vector3d &point) {
-            points.push_back(point);
-        }
-};
 
 static const double atan2_p1 = 0.9997878412794807f*(double)(180/CV_PI);
 static const double atan2_p3 = -0.3258083974640975f*(double)(180/CV_PI);
@@ -60,24 +55,10 @@ Eigen::MatrixXf GenBackDescriptorsVeri(const V3d_i &filtered_pointcloud);
 bool GeometryVeriPoseEstimation(const Graph &graph_q, const Graph &graph_t, Eigen::Matrix4d &transform,std::vector<int>& match_instance_idx,
                                 double graph_sim_th,double back_sim_th,double map_voxel_size_loop);
 std::tuple<V3d_i,V3d_i> FindCorrespondencesWithIdx(const Graph &graph1, const Graph &graph2);
-std::tuple<V3d_i,V3d_i> FindCorrespondencesKDtree(const Graph &graph1, const Graph &graph2, int search_results_num);
+
 std::tuple<V3d_i,V3d_i> OutlierPruning(const Graph &graph1, const Graph &graph2, V3d_i match_node1, V3d_i match_node2);
-bool CheckSubTriangle(const std::vector<Eigen::Vector3d> &nodeSubgraphTriangle1, const std::vector<Eigen::Vector3d> &nodeSubgraphTriangle2);
-Eigen::Isometry3d SolveSVD(const std::vector<Eigen::Vector3d> &match_node1,
-                            const std::vector<Eigen::Vector3d> &match_node2);
-std::tuple<Eigen::Isometry3d,double> RansacAlignment(const std::vector<Eigen::Vector3d> &match_node1,
-                                                     const std::vector<Eigen::Vector3d> &match_node2,
-                                                    const std::vector<Eigen::Vector3d> &node1,
-                                                    const std::vector<Eigen::Vector3d> &node2,
-                                                    int max_inter,  int& best_inlier_num);
-std::tuple<Eigen::Isometry3d,double> RansacAlignment(std::vector<Eigen::Vector3d> match_node1, 
-                                                    std::vector<Eigen::Vector3d> match_node2, 
-                                                    const Graph &graph1,
-                                                    const Graph &graph2,
-                                                    int max_inter, int& best_inlier_num);
-std::tuple<Eigen::Isometry3d,double> RansacAlignment(std::vector<Eigen::Vector3d> match_node1,
-                                                    std::vector<Eigen::Vector3d> match_node2,
-                                                    int max_inter, int& best_inlier_num);
+
+
 double fastAtan2( const double &y, const double &x);
 double GetCosSim(const std::vector<float> vec1, const std::vector<float> vec2);
 double CalcaulateSim(const Eigen::MatrixXf &desc1, const Eigen::MatrixXf &desc2);

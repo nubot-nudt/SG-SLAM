@@ -13,7 +13,7 @@
 #include <unordered_map>
 
 #include "VoxelHashMap.hpp"
-#include "Coreutils.h"
+#include "semgraph_slam/core/Coreutils.h"
 
 namespace  {
 

@@ -11,13 +11,19 @@
 #include <sophus/so3.hpp>
 #include <tsl/robin_map.h>
 
+#include "semgraph_slam/core/Coreutils.h"
+#include "semgraph_slam/core/nanoflann.hpp"
+#include "semgraph_slam/core/KDTreeVectorOfVectorsAdaptor.h"
+#include "semgraph_slam/core/CommonUtils.hpp"
+
 #include "SemGraph.hpp"
-#include "LoopClosure.hpp"
-#include "Coreutils.h"
 
 namespace graph_slam{
 
 using VTbii = std::vector<std::tuple<bool,int,int>>;  // (imatch flag, instance id in current graph, instnace in local map)
+
+std::tuple<V3d_i,V3d_i> FindCorrespondencesKDtree(const Graph &graph1, const Graph &graph2, int search_results_num);
+bool CheckSubTriangle(const std::vector<Eigen::Vector3d> &nodeSubgraphTriangle1, const std::vector<Eigen::Vector3d> &nodeSubgraphTriangle2);
 
 struct GraphMap {
 

@@ -48,4 +48,6 @@ include(3rdparty/find_dependencies.cmake)
 include(cmake/CompilerOptions.cmake)
 
 add_subdirectory(core)
+add_subdirectory(frontend)
+add_subdirectory(loopclosure)
 add_subdirectory(pipeline)

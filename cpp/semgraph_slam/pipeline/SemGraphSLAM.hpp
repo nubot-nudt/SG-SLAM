@@ -9,13 +9,13 @@
 #include <vector>
 
 // SG-SLAM
-#include "semgraph_slam/core/Deskew.hpp"
-#include "semgraph_slam/core/Threshold.hpp"
-#include "semgraph_slam/core/VoxelHashMap.hpp"
-#include "semgraph_slam/core/SemanticCluster.hpp"
-#include "semgraph_slam/core/SemGraph.hpp"
+#include "semgraph_slam/frontend/Deskew.hpp"
+#include "semgraph_slam/frontend/Threshold.hpp"
+#include "semgraph_slam/frontend/VoxelHashMap.hpp"
+#include "semgraph_slam/frontend/SemanticCluster.hpp"
+#include "semgraph_slam/frontend/SemGraph.hpp"
 #include "semgraph_slam/core/Coreutils.h"
-#include "semgraph_slam/core/GraphMap.hpp"
+#include "semgraph_slam/frontend/GraphMap.hpp"
 
 
 namespace graph_slam{

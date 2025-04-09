@@ -27,7 +27,7 @@
 #include <utility>
 #include <vector>
 
-#include "Coreutils.h"
+#include "semgraph_slam/core/Coreutils.h"
 
 namespace graph_slam {
 

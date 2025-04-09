@@ -31,7 +31,7 @@
 #include <Eigen/Core>
 #include <sophus/se3.hpp>
 #include <vector>
-#include "Coreutils.h"
+#include "semgraph_slam/core/Coreutils.h"
 
 namespace graph_slam{
 struct VoxelHashMap {

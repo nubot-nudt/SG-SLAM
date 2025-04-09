@@ -8,6 +8,78 @@
 
 namespace graph_slam{
 
+bool CheckSubTriangle(const std::vector<Eigen::Vector3d> &nodeSubgraphTriangle1, const std::vector<Eigen::Vector3d> &nodeSubgraphTriangle2){
+
+    int matche_sub_Triangle_th = 0;
+    bool sub_triangle_match = false;
+    if(nodeSubgraphTriangle1.size()<2 && nodeSubgraphTriangle2.size()<2) return true; // 节点没有子节点三角形，直接返回true,无法判断
+    // 匹配两个对应节点的局部子图三角形
+    for(size_t m=0;m<nodeSubgraphTriangle1.size();m++){
+        for(size_t n=0;n<nodeSubgraphTriangle2.size();n++){
+            if(abs(nodeSubgraphTriangle1[m].x() - nodeSubgraphTriangle2[n].x())<0.3&&
+                abs(nodeSubgraphTriangle1[m].y() - nodeSubgraphTriangle2[n].y())<0.3&&
+                abs(nodeSubgraphTriangle1[m].z() - nodeSubgraphTriangle2[n].z())<0.3){
+                    matche_sub_Triangle_th++;
+            }
+        }
+    }
+    // if(matche_sub_Triangle_th>=1) {
+    //         sub_triangle_match = true;
+    //     }
+    if(nodeSubgraphTriangle1.size()>5 && nodeSubgraphTriangle2.size()>5){
+        if(matche_sub_Triangle_th>=3) { 
+            sub_triangle_match = true;
+        }
+    }
+    else{
+        if(matche_sub_Triangle_th>=1) {
+            sub_triangle_match = true;
+        }
+    }
+    return sub_triangle_match;
+}
+
+
+std::tuple<V3d_i,V3d_i> FindCorrespondencesKDtree(const Graph &graph1, const Graph &graph2, int search_results_num){// graph1是frame, graph2是map
+
+    using NodeDesTree = KDTreeVectorOfVectorsAdaptor< std::vector<std::vector<float>>, float >;
+    
+    std::vector<std::vector<float>> map_node_des_vec;
+    for(auto node_desc:graph2.node_desc){
+        map_node_des_vec.emplace_back(node_desc);
+    }
+    std::unique_ptr<NodeDesTree> map_node_des_tree;
+    int dim = graph2.node_desc[0].size();
+    map_node_des_tree = std::make_unique<NodeDesTree>(dim /* dim */, map_node_des_vec, 10 /* max leaf */ );
+
+    std::vector<Eigen::Vector3d> query_nodes_center;
+    std::vector<Eigen::Vector3d> match_nodes_center;
+    std::vector<int> query_nodes_idx;
+    std::vector<int> match_nodes_idx;
+
+    for(size_t i=0;i<graph1.node_desc.size();i++){
+
+        auto query_des = graph1.node_desc[i];
+        std::vector<size_t> candidate_indexes(search_results_num ); 
+        std::vector<float> out_dists_sqr(search_results_num );
+
+        nanoflann::KNNResultSet<float> knnsearch_result(search_results_num );
+        knnsearch_result.init( &candidate_indexes[0], &out_dists_sqr[0] );
+        map_node_des_tree->index->findNeighbors( knnsearch_result, &query_des[0] /* query */, nanoflann::SearchParameters(10));
+
+        for(int m=0;m<search_results_num;m++){
+            int j = candidate_indexes[m];
+            if((graph1.node_labels[i] == graph2.node_labels[j]) && CheckSubTriangle(graph1.node_sub_triangles[i],graph2.node_sub_triangles[j])){
+                query_nodes_center.emplace_back(graph1.node_centers[i]);
+                query_nodes_idx.emplace_back(i);
+                match_nodes_center.emplace_back(graph2.node_centers[j]);
+                match_nodes_idx.emplace_back(j);
+                break;
+            }
+        }
+    }
+    return {std::make_pair(query_nodes_center,query_nodes_idx),std::make_pair(match_nodes_center,match_nodes_idx)};
+}
 
 // VTbii = std::vector<std::tuple<bool,int,int>>;  // (match flag, instance id in current graph, instnace in local map)
 /*

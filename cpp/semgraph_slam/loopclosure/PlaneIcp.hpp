@@ -16,7 +16,7 @@
 #include <ceres/ceres.h>
 #include <ceres/rotation.h>
 
-#include "Coreutils.h"
+#include "semgraph_slam/core/Coreutils.h"
 
 namespace Eigen {
     using Vector6d = Eigen::Matrix<double, 6, 1>;

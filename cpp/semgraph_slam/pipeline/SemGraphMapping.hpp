@@ -10,7 +10,7 @@
 #include <sophus/se3.hpp>
 
 // SG-SLAM
-#include "semgraph_slam/core/LoopClosure.hpp"
+#include "semgraph_slam/loopclosure/LoopClosure.hpp"
 #include "semgraph_slam/core/Coreutils.h"
 
 namespace graph_slam{

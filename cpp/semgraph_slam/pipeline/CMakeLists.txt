@@ -8,5 +8,5 @@
 add_library(pipeline STATIC)
 add_library(graph_slam::pipeline ALIAS pipeline)
 target_sources(pipeline PRIVATE SemGraphSLAM.cpp SemGraphMapping.cpp)
-target_link_libraries(pipeline PUBLIC graph_slam::core)
+target_link_libraries(pipeline PUBLIC graph_slam::core graph_slam::frontend graph_slam::loopclosure)
 set_global_target_properties(pipeline)

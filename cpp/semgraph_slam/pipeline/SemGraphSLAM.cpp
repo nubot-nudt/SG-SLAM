@@ -5,11 +5,11 @@
 
 #include "SemGraphSLAM.hpp"
 
-#include "semgraph_slam/core/Deskew.hpp"
-#include "semgraph_slam/core/Preprocessing.hpp"
-#include "semgraph_slam/core/Registration.hpp"
-#include "semgraph_slam/core/VoxelHashMap.hpp"
-#include "semgraph_slam/core/LoopClosure.hpp"
+#include "semgraph_slam/frontend/Deskew.hpp"
+#include "semgraph_slam/frontend/Preprocessing.hpp"
+#include "semgraph_slam/frontend/Registration.hpp"
+#include "semgraph_slam/frontend/VoxelHashMap.hpp"
+#include "semgraph_slam/loopclosure/LoopClosure.hpp"
 
 namespace graph_slam{
 
