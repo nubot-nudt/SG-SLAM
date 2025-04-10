@@ -307,7 +307,6 @@ void Odometry::RegisterFrame() {
         rclcpp::spin_some(shared_from_this());
 
     }
-    rclcpp::shutdown();
 }
 
 
@@ -383,7 +382,6 @@ Mapping::Mapping()
     Back-end thread main function
 */
 void Mapping::ScanMapping(){
-    rclcpp::Rate loop(10);
     int run_isam_count = 0;            // the count for running isam
     int run_map_update_count = 0;      // the count for running map update
     bool process_flag_debug = false;   
@@ -575,7 +573,6 @@ void Mapping::ScanMapping(){
 
         rclcpp::spin_some(shared_from_this());
     }  
-    rclcpp::shutdown();
 }
 
 /*
@@ -596,6 +593,7 @@ void Mapping::PublishMap(bool seq_finsih_flag){
     // Publish global pc map after all frames have been processed
     if(seq_finsih_flag){
         int down_meters = 0.0;
+        rclcpp::Rate rate(100); 
         for(size_t i=0; i<semGraphMappinger.keyframe_idx_vec_.size(); i++){
             
             std::vector<Eigen::Vector4d> global_pc_map;
@@ -623,6 +621,7 @@ void Mapping::PublishMap(bool seq_finsih_flag){
 
             sensor_msgs::msg::PointCloud2 global_pc_map_msg = convertPointCloudSemanticRGBMSG(global_pc_map, global_graph_header);
             global_pc_map_publisher_->publish(global_pc_map_msg);
+            rate.sleep();
         }
 
         // Publish edge
