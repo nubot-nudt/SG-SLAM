@@ -18,6 +18,7 @@ This repo contains the implementation of our paper
 
 ## News:
 
+- [2025-06] SG-SLAM is accepted to IROS 2025 :tada:
 - [2025-04] ROS2 supported.
 - [2025-03] Code released.
 - [2025-02] Submitted IROS 2025.
