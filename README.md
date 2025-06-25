@@ -12,7 +12,7 @@ This repo contains the implementation of our paper
 
 > **Leveraging Semantic Graphs for Efficient and Robust LiDAR SLAM**
 >
-> [Neng Wang](https://github.com/neng-wang), [Huimin Lu](https://scholar.google.com.hk/citations?hl=en&user=cp-6u7wAAAAJ), [Zhiqiang Zheng](https://ieeexplore.ieee.org/author/37280344700), [Hesheng Wang](https://irmv.sjtu.edu.cn/wanghesheng), [Yun-Hui Liu](https://scholar.google.com.hk/citations?user=WzmDQTMAAAAJ&hl=en), [Xieyuanli Chen](https://github.com/Chen-Xieyuanli)
+> [Neng Wang](https://github.com/neng-wang), [Huimin Lu](https://scholar.google.com.hk/citations?hl=en&user=cp-6u7wAAAAJ), [Zhiqiang Zheng](https://ieeexplore.ieee.org/author/37280344700), [Yun-Hui Liu](https://scholar.google.com.hk/citations?user=WzmDQTMAAAAJ&hl=en), [Xieyuanli Chen](https://github.com/Chen-Xieyuanli)
 
 *SG-SLAM is a semantic graph enhanced SLAM framework. It is  robust for pose estimation and capable of constructing globally consistent semantic map.*
 
@@ -145,7 +145,7 @@ If you find our work helpful, please consider citing our paper:
 ```bib
  @inproceedings{wang2025sgslam,
         title     = {{Leveraging Semantic Graphs for Efficient and Robust LiDAR SLAM}},
-        author    = {Neng, Wang and Huimin, Lu and Zhiqiang, Zheng and Hesheng, Wang and Yun-Hui, Liu and Xieyuanli, Chen},
+        author    = {Neng, Wang and Huimin, Lu and Zhiqiang, Zheng and Yun-Hui, Liu and Xieyuanli, Chen},
         booktitle = {Proceedings of the IEEE/RSJ Int. Conf. on Intelligent Robots and Systems (IROS)},
         year      = {2025}
       }
