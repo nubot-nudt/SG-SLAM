@@ -143,10 +143,10 @@ You can observe the relocalization results from rviz.
 If you find our work helpful, please consider citing our paper:
 
 ```bib
- @article{wang2025sgslam,
+ @inproceedings{wang2025sgslam,
         title     = {{Leveraging Semantic Graphs for Efficient and Robust LiDAR SLAM}},
         author    = {Neng, Wang and Huimin, Lu and Zhiqiang, Zheng and Hesheng, Wang and Yun-Hui, Liu and Xieyuanli, Chen},
-        journal   = {arXiv preprint arXiv:2503.11145},
+        booktitle = {Proceedings of the IEEE/RSJ Int. Conf. on Intelligent Robots and Systems (IROS)},
         year      = {2025}
       }
 ```
