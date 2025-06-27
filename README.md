@@ -39,7 +39,7 @@ relocalization during odometry failures, accurate loop closing, and semantic gra
 
 ## 1.2 A related video
 
-Our accompanying video is available on **[OneDrive](https://1drv.ms/v/c/5f06ab4eccad8a4e/Ebg7WRKoQRpInlFeTXhpiaYBN-F-GsGmPVdMhvdXtT44mw?e=3Hc8WS)**.
+Our accompanying video is available on **[OneDrive](https://1drv.ms/v/c/5f06ab4eccad8a4e/EUXBLz_AOnRPh4hOaYkrewABGrMR84wVqAVh2Uz3jq60hQ?e=zLal21)**.
 
 <div align="center">
     <a href="https://1drv.ms/v/c/5f06ab4eccad8a4e/Ebg7WRKoQRpInlFeTXhpiaYBN-F-GsGmPVdMhvdXtT44mw?e=ZAH8HQ" target="_blank"><img src="./pic/video_cover.jpeg" width=75% /></a>
