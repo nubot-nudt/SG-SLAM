@@ -51,12 +51,26 @@ We tested our code on **ubuntu 20.04** and **ROS1 noetic**, **ROS2 foxy**
 We have integrate the following dependency libraries into the [folder](./cpp/semgraph_slam/3rdparty)
 
 - [Ceres](https://github.com/ceres-solver/ceres-solver)
+
 - [Eigen](https://github.com/PX4/eigen)
+
 - [Sophus](https://github.com/strasdat/Sophus)
+
 - [tbb](https://github.com/uxlfoundation/oneTBB)
+
+  ```bash
+  sudo apt install libtbb-dev
+  ```
+
 - [tsl_robin](https://github.com/Tessil/robin-map)
 
 Additionally [GTSAM](https://github.com/borglab/gtsam) 4.0.3 needs to be installed on your machine.
+
+```bash
+sudo add-apt-repository ppa:borglab/gtsam-release-4.0
+sudo apt update
+sudo apt install libgtsam-dev libgtsam-unstable-dev
+```
 
 # 3. Data
 

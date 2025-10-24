@@ -70,6 +70,8 @@
         "variant": "cpp",
         "bit": "cpp",
         "*.ipp": "cpp",
-        "core": "cpp"
+        "core": "cpp",
+        "hash_map": "cpp",
+        "hash_set": "cpp"
     }
 }
